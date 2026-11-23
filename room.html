@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الغرفة العامة - اتحاد دار النعيم</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>اتحاد دار النعيم للتنمية</h1>
+    <p>الغرفة العامة</p>
+</header>
+
+<main>
+    <section id="public-room">
+        <h2>الغرفة العامة</h2>
+
+        <div id="chat-box">
+            <p>مرحباً بكم في الغرفة العامة لاتحاد دار النعيم للتنمية</p>
+        </div>
+
+        <div class="chat-form">
+            <input type="text" id="user-name"
+                placeholder="اكتب اسمك">
+
+            <input type="text" id="message-input"
+                placeholder="اكتب رسالتك هنا">
+
+            <button id="send-btn">إرسال</button>
+        </div>
+    </section>
+
+    <a href="index.html">العودة إلى الصفحة الرئيسية</a>
+</main>
+
+<footer>
+    جميع الحقوق محفوظة لاتحاد دار النعيم للتنمية
+</footer>
+
+
+
+<script type="module">
+
+  // استيراد Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+
+  // استيراد قاعدة البيانات
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    onSnapshot
+  } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+  // استيراد المصادقة
+  import {
+    getAuth,
+    signInAnonymously
+  } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+
+  // إعدادات المشروع
+  const firebaseConfig = {
+    apiKey: "AIzaSyBO-14sgAGb9IEjW98t5EtF_-7RLMRjykg",
+    authDomain: "dar-al-naeem-union.firebaseapp.com",
+    projectId: "dar-al-naeem-union",
+    storageBucket: "dar-al-naeem-union.firebasestorage.app",
+    messagingSenderId: "65313770148",
+    appId: "1:65313770148:web:88ea9c89d91b2dada07431",
+    measurementId: "G-3521JBV1JW"
+  };
+
+
+  // تشغيل Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+
+  // تسجيل الدخول المجهول
+  async function startRoom() {
+
+    try {
+
+      await signInAnonymously(auth);
+
+      console.log("تم تسجيل الدخول المجهول بنجاح");
+
+      startChat();
+
+    } catch (error) {
+
+     catch (error) {
+     
+     console.error("خطأ في تسجيل الدخول:", error);
+     
+     alert("خطأ تسجيل الدخول: " + error.code + "\n" + error.message);
+     
+     }
+
+    }
+
+  }
+
+
+  // تشغيل الدردشة
+  function startChat() {
+
+    const chatBox = document.getElementById("chat-box");
+    const sendBtn = document.getElementById("send-btn");
+
+    if (!chatBox || !sendBtn) {
+      console.error("لم يتم العثور على عناصر الدردشة");
+      return;
+    }
+
+
+    // عرض الرسائل
+    onSnapshot(collection(db, "messages"), (snapshot) => {
+
+      chatBox.innerHTML = "";
+
+      snapshot.forEach((doc) => {
+
+        const data = doc.data();
+
+        const messageDiv = document.createElement("div");
+
+        messageDiv.style.padding = "10px";
+        messageDiv.style.margin = "8px 0";
+        messageDiv.style.background = "#ffffff";
+        messageDiv.style.borderRadius = "8px";
+
+        const name = document.createElement("strong");
+        name.textContent = data.name || "عضو";
+
+        const message = document.createElement("p");
+        message.textContent = data.message || "";
+
+        const time = document.createElement("small");
+        time.textContent = data.time || "";
+
+        messageDiv.appendChild(name);
+        messageDiv.appendChild(message);
+        messageDiv.appendChild(time);
+
+        chatBox.appendChild(messageDiv);
+
+      });
+
+    }, (error) => {
+
+     console.error("خطأ في عرض الرسائل:", error);
+     alert("خطأ عرض الرسائل: " + error.code);;
+
+    });
+
+
+    // إرسال الرسائل
+    sendBtn.addEventListener("click", async () => {
+
+      const name = document.getElementById("user-name").value.trim();
+
+      const message = document.getElementById("message-input").value.trim();
+
+      if (!name || !message) {
+
+        alert("يرجى كتابة الاسم والرسالة");
+
+        return;
+
+      }
+
+      if (!auth.currentUser) {
+
+        alert("يرجى الانتظار حتى يتم تسجيل الدخول");
+
+        return;
+
+      }
+
+
+      try {
+
+        await addDoc(collection(db, "messages"), {
+
+          name: name,
+
+          message: message,
+
+          time: new Date().toLocaleString("ar")
+
+        });
+
+        alert("تم إرسال الرسالة بنجاح");
+
+        document.getElementById("message-input").value = "";
+
+      } catch (error) {
+
+        console.error("خطأ في إرسال الرسالة:", error);
+
+       alert("خطأ الإرسال: " + error.code + "\n" + error.message);
+
+      }
+
+    });
+
+    console.log("تم تشغيل الغرفة العامة بنجاح");
+
+  }
+
+
+  // بدء تشغيل الغرفة
+  startRoom();
+
+</script>
+
+</body>
+</html>

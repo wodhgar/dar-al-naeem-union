@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>اتحاد دار النعيم للتنمية</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>اتحاد دار النعيم للتنمية</h1>
+        <p>قرية دار النعيم - شرق سنار</p>
+    </header>
+
+    <nav>
+
+        <a href="index.html">الرئيسية</a>
+
+        <details class="dropdown">
+            <summary>عن الاتحاد</summary>
+            <div class="dropdown-menu">
+                <a href="about.html">نبذة عن الاتحاد</a>
+                <a href="#">الرؤية والرسالة</a>
+                <a href="#">أهداف الاتحاد</a>
+            </div>
+        </details>
+
+        
+        <details class="dropdown">
+        <summary>الإدارة</summary>
+        <div class="dropdown-menu">
+        <a href="management.html">المكتب التنفيذي</a>
+        <a href="structure.html_.html">الهيكل التنظيمي</a>
+        <a href="#">اللجان</a>
+        </div>
+        </details>
+        
+
+       
+       <details class="dropdown">
+       <summary>المشروعات</summary>
+       <div class="dropdown-menu">
+       <a href="projects.html_.html">المشروعات والإنجازات</a>
+       <a href="#">مشروعات التنمية</a>
+       <a href="#">مشروعات التعليم</a>
+       <a href="#">مشروعات الصحة</a>
+       <a href="#">مشروعات المياه</a>
+       </div>
+       </details>
+       
+
+      <a href="news.html">الأخبار والإعلانات</a>
+      
+      <a href="rooms.html">الغرف</a>
+      
+      <a href="forums.html">المنتديات</a>
+      
+      <a href="contact.html">اتصل بنا</a>
+    </nav>
+
+    <section class="hero">
+
+        <h2>مرحباً بكم في موقعنا الرسمي</h2>
+
+        <p>
+            معاً من أجل تنمية قرية دار النعيم
+            وتطوير التعليم والصحة والخدمات
+            وتعزيز وحدة أبناء القرية.
+        </p>
+
+    </section>
+    
+    
+    <section id="public-room">
+    <h2>الغرفة العامة</h2>
+    
+    <div id="chat-box">
+    <p>مرحباً بكم في الغرفة العامة لاتحاد دار النعيم للتنمية</p>
+    </div>
+    
+    <div class="chat-form">
+    <input
+    type="text"
+    id="user-name"
+    placeholder="اكتب اسمك"
+    >
+    
+    <input
+    type="text"
+    id="message-input"
+    placeholder="اكتب رسالتك هنا"
+    >
+    
+    <button id="send-btn">إرسال</button>
+    </div>
+    </section>
+    
+
+    <footer>
+        <p>جميع الحقوق محفوظة © اتحاد دار النعيم للتنمية</p>
+    </footer>
+
+    
+    <script src="script.js"></script>
+    
+    <script type="module">
+    
+    // استيراد Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+    
+    // استيراد Firestore
+    import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    onSnapshot
+    } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+    
+    // استيراد المصادقة
+    import {
+    getAuth,
+    signInAnonymously
+    } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+    
+    
+    // إعدادات المشروع
+    const firebaseConfig = {
+    apiKey: "AIzaSyBO-14sgAGb9IEjW98t5EtF_-7RLMRjykg",
+    authDomain: "dar-al-naeem-union.firebaseapp.com",
+    projectId: "dar-al-naeem-union",
+    storageBucket: "dar-al-naeem-union.firebasestorage.app",
+    messagingSenderId: "65313770148",
+    appId: "1:65313770148:web:88ea9c89d91b2dada07431",
+    measurementId: "G-3521JBV1JW"
+    };
+    
+    
+    // تشغيل Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+    
+    
+    // تسجيل الدخول المجهول
+    async function startApp() {
+    
+    try {
+    
+    await signInAnonymously(auth);
+    
+    console.log("تم تسجيل الدخول المجهول بنجاح");
+    
+    // تشغيل الدردشة بعد تسجيل الدخول
+    startChat();
+    
+    } catch (error) {
+    
+    console.error("خطأ في تسجيل الدخول:", error);
+    
+    alert("تعذر تسجيل الدخول إلى الموقع");
+    
+    }
+    
+    }
+    
+    
+    // تشغيل الدردشة
+    function startChat() {
+    
+    const chatBox = document.getElementById("chat-box");
+    const sendBtn = document.getElementById("send-btn");
+    
+    // التأكد من وجود عناصر الدردشة
+    if (!chatBox || !sendBtn) {
+    console.error("لم يتم العثور على عناصر الدردشة");
+    return;
+    }
+    
+    
+    // عرض الرسائل
+    onSnapshot(collection(db, "messages"), (snapshot) => {
+    
+    chatBox.innerHTML = "";
+    
+    snapshot.forEach((doc) => {
+    
+    const data = doc.data();
+    
+    const messageDiv = document.createElement("div");
+    
+    messageDiv.style.padding = "10px";
+    messageDiv.style.margin = "8px 0";
+    messageDiv.style.background = "#ffffff";
+    messageDiv.style.borderRadius = "8px";
+    
+    const name = document.createElement("strong");
+    name.textContent = data.name || "عضو";
+    
+    const message = document.createElement("p");
+    message.textContent = data.message || "";
+    
+    const time = document.createElement("small");
+    time.textContent = data.time || "";
+    
+    messageDiv.appendChild(name);
+    messageDiv.appendChild(message);
+    messageDiv.appendChild(time);
+    
+    chatBox.appendChild(messageDiv);
+    
+    });
+    
+    }, (error) => {
+    
+    console.error("خطأ في عرض الرسائل:", error);
+    
+    });
+    
+    
+    // إرسال الرسائل
+    sendBtn.addEventListener("click", async () => {
+    
+    const name = document.getElementById("user-name").value.trim();
+    
+    const message = document.getElementById("message-input").value.trim();
+    
+    if (!name || !message) {
+    
+    alert("يرجى كتابة الاسم والرسالة");
+    
+    return;
+    
+    }
+    
+    if (!auth.currentUser) {
+    
+    alert("يرجى الانتظار حتى يتم تسجيل الدخول");
+    
+    return;
+    
+    }
+    
+    
+    try {
+    
+    await addDoc(collection(db, "messages"), {
+    
+    name: name,
+    
+    message: message,
+    
+    time: new Date().toLocaleString("ar")
+    
+    });
+    
+    alert("تم إرسال الرسالة بنجاح");
+    
+    document.getElementById("message-input").value = "";
+    
+    } catch (error) {
+    
+    console.error("خطأ في إرسال الرسالة:", error);
+    
+    alert("تعذر إرسال الرسالة");
+    
+    }
+    
+    });
+    
+    
+    // اختبار الاتصال بقاعدة البيانات
+    async function testConnection() {
+    
+    try {
+    
+    const result = await getDocs(collection(db, "messages"));
+    
+    console.log("نجح الاتصال بقاعدة البيانات");
+    
+    console.log("عدد المستندات:", result.size);
+    
+    } catch (error) {
+    
+    console.error("خطأ في الاتصال:", error);
+    
+    }
+    
+    }
+    
+    testConnection();
+    
+    console.log("تم تشغيل Firebase بنجاح");
+    
+    }
+    
+    
+    // بدء تشغيل الموقع
+    startApp();
+    
+    </script>
+    
+    
+
+
+</body>
+</html>

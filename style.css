@@ -1,0 +1,994 @@
+
+/* إعدادات الصفحة العامة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    direction: rtl;
+    background-color: #f4f7f4;
+    color: #333;
+}
+
+/* رأس الموقع */
+header {
+    background-color: #075b36;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 16px;
+}
+
+/* القائمة الرئيسية */
+nav {
+    background-color: #06452b;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+}
+
+/* القوائم المنسدلة */
+.dropdown {
+    position: relative;
+    color: white;
+}
+
+.dropdown summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.dropdown summary::-webkit-details-marker {
+    display: none;
+}
+
+.dropdown summary::after {
+    content: " ▼";
+    font-size: 11px;
+}
+
+.dropdown[open] summary {
+    background-color: #087747;
+    border-radius: 5px;
+}
+
+/* محتويات القائمة */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 190px;
+    background-color: white;
+    box-shadow: 0 4px 12px #0003;
+    border-radius: 5px;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.dropdown-menu a {
+    color: #075b36;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+}
+
+.dropdown-menu a:hover {
+    background-color: #e5f3eb;
+}
+
+/* تأثير الروابط */
+nav > a:hover {
+    background-color: #087747;
+    border-radius: 5px;
+}
+
+/* القسم الرئيسي */
+.hero {
+    text-align: center;
+    padding: 70px 20px;
+    background-color: white;
+}
+
+.hero h2 {
+    color: #075b36;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* تذييل الموقع */
+footer {
+    background-color: #075b36;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* الهواتف */
+@media (max-width: 600px) {
+
+    nav {
+        gap: 5px;
+        padding: 10px;
+    }
+
+    nav a,
+    .dropdown summary {
+        font-size: 14px;
+        padding: 10px 7px;
+    }
+
+    .dropdown-menu {
+        min-width: 170px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    .hero {
+        padding: 45px 15px;
+    }
+}
+
+
+/* صفحة عن الاتحاد */
+
+.about {
+    background-color: white;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 10px;
+    line-height: 2;
+}
+
+.about h2 {
+    color: #075b36;
+    margin: 20px 0 10px;
+    border-bottom: 2px solid #e1eee6;
+    padding-bottom: 8px;
+}
+
+.about p {
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+.about ul {
+    padding-right: 25px;
+}
+
+.about li {
+    margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+    .about {
+        margin: 15px;
+        padding: 20px;
+    }
+}
+
+
+/* صفحة الإدارة */
+
+.management {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.management-intro {
+    background: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    line-height: 2;
+    border-top: 5px solid #075b36;
+}
+
+.management-intro h2 {
+    color: #075b36;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    text-align: center;
+    color: #075b36;
+    margin: 35px 0 25px;
+}
+
+.members {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.member-card {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #0001;
+    border-bottom: 4px solid #075b36;
+}
+
+.member-photo {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    background: #e5f0e9;
+    border: 3px solid #075b36;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #075b36;
+    font-size: 14px;
+}
+
+.member-card h3 {
+    color: #075b36;
+    margin-bottom: 10px;
+}
+
+.member-card p {
+    color: #555;
+    font-size: 16px;
+}
+
+.duties {
+    background: white;
+    margin-top: 40px;
+    padding: 25px;
+    border-radius: 10px;
+    line-height: 2;
+}
+
+.duties h2 {
+    color: #075b36;
+    margin-bottom: 20px;
+}
+
+.duty-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.duty-item h3 {
+    color: #075b36;
+}
+
+.note {
+    background: #edf5ef;
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+@media (max-width: 700px) {
+    .members {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 450px) {
+    .members {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* صفحة الهيكل التنظيمي */
+
+.structure {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.structure-intro,
+.structure-info {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    line-height: 2;
+}
+
+.structure-intro {
+    text-align: center;
+    border-top: 5px solid #075b36;
+}
+
+.structure h2 {
+    color: #075b36;
+    margin-bottom: 15px;
+}
+
+.organization {
+    text-align: center;
+    margin: 35px 0;
+}
+
+.org-box {
+    background: #e5f1e9;
+    border: 2px solid #075b36;
+    border-radius: 10px;
+    padding: 18px;
+    max-width: 450px;
+    margin: auto;
+}
+
+.org-box.top {
+    background: #075b36;
+    color: white;
+}
+
+.org-box h3 {
+    margin-bottom: 8px;
+}
+
+.org-line {
+    width: 3px;
+    height: 30px;
+    background: #075b36;
+    margin: auto;
+}
+
+.org-groups {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 700px;
+    margin: auto;
+}
+
+.org-box.small {
+    width: 100%;
+    font-size: 14px;
+}
+
+.structure-info {
+    margin-top: 30px;
+}
+
+.structure-info li {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 500px) {
+    .org-groups {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* صفحة المشروعات والإنجازات */
+
+.projects {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.projects-intro {
+    background: white;
+    text-align: center;
+    padding: 35px 20px;
+    border-radius: 10px;
+    border-top: 5px solid #075b36;
+    line-height: 2;
+}
+
+.projects-intro h2 {
+    color: #075b36;
+    margin-bottom: 12px;
+}
+
+.projects-title {
+    text-align: center;
+    color: #075b36;
+    margin: 35px 0 25px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.project-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 10px #0001;
+    border-bottom: 4px solid #075b36;
+}
+
+.project-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.project-card h3 {
+    color: #075b36;
+    margin-bottom: 12px;
+}
+
+.project-card p {
+    line-height: 1.9;
+    margin-bottom: 15px;
+}
+
+.project-card span {
+    color: #075b36;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.future-projects,
+.documentation {
+    background: white;
+    padding: 25px;
+    margin-top: 30px;
+    border-radius: 10px;
+    line-height: 2;
+}
+
+.future-projects h2,
+.documentation h2 {
+    color: #075b36;
+    margin-bottom: 15px;
+}
+
+.future-projects ul {
+    padding-right: 25px;
+}
+
+.future-projects li {
+    margin-bottom: 10px;
+}
+
+.documentation {
+    border-right: 5px solid #075b36;
+}
+
+@media (max-width: 750px) {
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 450px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* صفحة الأخبار والإعلانات */
+
+.news {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.news-intro {
+    background: white;
+    text-align: center;
+    padding: 35px 20px;
+    border-radius: 10px;
+    border-top: 5px solid #075b36;
+    line-height: 2;
+}
+
+.news-intro h2 {
+    color: #075b36;
+    margin-bottom: 12px;
+}
+
+.news-title {
+    text-align: center;
+    color: #075b36;
+    margin: 35px 0 25px;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.news-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #0001;
+    border-bottom: 4px solid #075b36;
+    line-height: 1.9;
+}
+
+.news-icon {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.news-type {
+    color: #087747;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.news-card h3 {
+    color: #075b36;
+    margin: 12px 0;
+}
+
+.news-card p {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.news-date {
+    color: #777;
+    font-size: 13px;
+}
+
+.news-notices {
+    background: white;
+    padding: 25px;
+    margin-top: 30px;
+    border-right: 5px solid #075b36;
+    border-radius: 10px;
+    line-height: 2;
+}
+
+.news-notices h2 {
+    color: #075b36;
+    margin-bottom: 12px;
+}
+
+@media (max-width: 750px) {
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 450px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* صفحة اتصل بنا */
+
+.contact {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.contact-intro {
+    background: white;
+    text-align: center;
+    padding: 35px 20px;
+    border-radius: 10px;
+    border-top: 5px solid #075b36;
+    line-height: 2;
+}
+
+.contact-intro h2 {
+    color: #075b36;
+    margin-bottom: 12px;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.contact-card {
+    background: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #0001;
+    border-bottom: 4px solid #075b36;
+}
+
+.contact-card div {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.contact-card h3 {
+    color: #075b36;
+    margin-bottom: 10px;
+}
+
+.contact-form {
+    background: white;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+.contact-form h2 {
+    color: #075b36;
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin: 15px 0 8px;
+    color: #075b36;
+    font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form button {
+    background: #075b36;
+    color: white;
+    border: none;
+    padding: 13px 30px;
+    margin-top: 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background: #087747;
+}
+
+@media (max-width: 650px) {
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+}
+
+
+/* صفحة المنتديات والغرف */
+
+.forums {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.forums-intro {
+    background: white;
+    text-align: center;
+    padding: 35px 20px;
+    border-radius: 10px;
+    border-top: 5px solid #075b36;
+    line-height: 2;
+}
+
+.forums-intro h2 {
+    color: #075b36;
+    margin-bottom: 12px;
+}
+
+.forums-title {
+    text-align: center;
+    color: #075b36;
+    margin: 35px 0 25px;
+}
+
+.forums-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.forum-card {
+    background: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #0001;
+    border-bottom: 4px solid #075b36;
+}
+
+.forum-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.forum-card h3 {
+    color: #075b36;
+    margin-bottom: 12px;
+}
+
+.forum-card p {
+    line-height: 1.9;
+    margin-bottom: 20px;
+}
+
+.forum-link {
+    display: inline-block;
+    background: #075b36;
+    color: white;
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+}
+
+.forum-link:hover {
+    background: #087747;
+}
+
+.private-room {
+    display: inline-block;
+    background: #f0f0f0;
+    color: #555;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.forums-info {
+    background: white;
+    padding: 25px;
+    margin-top: 30px;
+    border-radius: 10px;
+    line-height: 2;
+}
+
+.forums-info h2 {
+    color: #075b36;
+    margin-bottom: 15px;
+}
+
+.forums-info ul {
+    padding-right: 25px;
+}
+
+@media (max-width: 600px) {
+    .forums-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* الغرفة العامة */
+
+.chat-room {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 15px;
+}
+
+.chat-header {
+    background: #075b36;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    border-radius: 10px 10px 0 0;
+    line-height: 2;
+}
+
+.chat-box {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+}
+
+.chat-messages {
+    height: 400px;
+    overflow-y: auto;
+    padding: 20px;
+    background: #f4f7f4;
+}
+
+.welcome-message {
+    background: #e1f1e7;
+    color: #075b36;
+    padding: 15px;
+    border-radius: 10px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.message {
+    background: white;
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border-right: 4px solid #075b36;
+    box-shadow: 0 2px 5px #0001;
+}
+
+.message strong {
+    display: block;
+    color: #075b36;
+    margin-bottom: 7px;
+}
+
+.message p {
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.message small {
+    display: block;
+    color: #888;
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.chat-form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.chat-form input,
+.chat-form textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.chat-form button {
+    background: #075b36;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.chat-form button:hover {
+    background: #087747;
+}
+
+@media (max-width: 600px) {
+    .chat-messages {
+        height: 350px;
+    }
+
+    .chat-room {
+        margin: 15px auto;
+    }
+}
+
+
+/* تنسيق الغرفة العامة */
+#public-room {
+    background: #f5f7fa;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+}
+
+#public-room h2 {
+    color: #176b45;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#chat-box {
+    background: white;
+    min-height: 200px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow-y: auto;
+}
+
+.chat-form input {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+#send-btn {
+    background: #176b45;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+/* تنسيق بطاقات الغرف */
+
+.room-card {
+    background: #ffffff;
+    padding: 20px;
+    margin: 15px auto;
+    width: 85%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+.room-card h3 {
+    color: #176b45;
+    margin-bottom: 10px;
+}
+
+.room-card p {
+    color: #555;
+    line-height: 1.8;
+}
+
+.room-card a {
+    display: inline-block;
+    background: #176b45;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.room-card a:hover {
+    background: #104d31;
+}

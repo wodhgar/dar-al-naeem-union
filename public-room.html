@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>الغرفة العامة - اتحاد دار النعيم</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>اتحاد دار النعيم للتنمية</h1>
+        <p>قرية دار النعيم - شرق سنار</p>
+    </header>
+
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="forums.html">المنتديات والغرف</a>
+        <a href="news.html">الأخبار</a>
+        <a href="contact.html">اتصل بنا</a>
+    </nav>
+
+    <main class="chat-room">
+
+        <section class="chat-header">
+            <h2>💬 الغرفة العامة</h2>
+            <p>مرحباً بكم في غرفة التواصل بين أبناء القرية</p>
+        </section>
+
+        <section class="chat-box">
+
+            <div class="chat-messages" id="messages">
+
+                <div class="welcome-message">
+                    مرحباً بكم في الغرفة العامة لاتحاد دار النعيم للتنمية.
+                    نرجو الالتزام بالاحترام المتبادل وحسن الحوار.
+                </div>
+
+            </div>
+
+            <form class="chat-form" id="chatForm">
+
+                <input
+                    type="text"
+                    id="senderName"
+                    placeholder="اكتب اسمك"
+                    required
+                >
+
+                <textarea
+                    id="messageInput"
+                    placeholder="اكتب رسالتك هنا..."
+                    rows="2"
+                    required
+                ></textarea>
+
+                <button type="submit">إرسال الرسالة</button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © اتحاد دار النعيم للتنمية</p>
+    </footer>
+
+    <script src="public-room.js"></script>
+
+</body>
+</html>
